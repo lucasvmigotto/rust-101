@@ -1,6 +1,7 @@
 {
     "name": "rust-101",
     "image": "mcr.microsoft.com/devcontainers/rust:1-1-bookworm",
+    "postCreateCommand": "cargo install rustlings",
     "runArgs": [
         "--name", "${localWorkspaceFolderBasename}"
     ],
