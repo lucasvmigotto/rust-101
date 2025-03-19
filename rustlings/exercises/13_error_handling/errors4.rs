@@ -1,5 +1,7 @@
 #![allow(clippy::comparison_chain)]
 
+use std::collections::btree_map::Values;
+
 #[derive(PartialEq, Debug)]
 enum CreationError {
     Negative,
@@ -12,7 +14,12 @@ struct PositiveNonzeroInteger(u64);
 impl PositiveNonzeroInteger {
     fn new(value: i64) -> Result<Self, CreationError> {
         // TODO: This function shouldn't always return an `Ok`.
-        Ok(Self(value as u64))
+        match value {
+            0 => Err(CreationError::Zero),
+            ..=-1 => Err(CreationError::Negative),
+            _ => Ok(Self(value as u64))
+        }
+
     }
 }
 
